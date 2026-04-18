@@ -1,0 +1,43 @@
+sequenceDiagram
+  autonumber
+  participant U as User
+  participant I as Interaction Layer
+  participant O as Agent Orchestrator
+  participant D as Decomposition Engine
+  participant K as Knowledge Retrieval
+  participant E as Effort Estimator
+  participant S as Constraint Scheduler
+  participant V as Feasibility Evaluator
+  participant F as Feedback Analyzer
+  participant R as Revision Engine
+  participant M as Memory Store
+
+  U->>I: Submit goal and constraints
+  I->>O: Start plan request
+  O->>D: Build learning units and milestones
+  D-->>O: Unit graph and dependencies
+  O->>K: Retrieve curated resources and topic structures
+  K-->>O: Ranked resources
+  O->>E: Estimate effort per unit
+  E-->>O: Hour estimates and confidence
+  O->>S: Build day-wise schedule
+  S-->>O: Plan v1 and alternatives
+  O->>V: Evaluate feasibility
+  V-->>O: Feasibility score and warnings
+  O->>M: Persist plan v1 context
+  O-->>I: Return recommended plan
+  I-->>U: Show plan
+
+  U->>I: Provide feedback and progress
+  I->>O: Trigger adaptation
+  O->>F: Classify feedback and detect impact
+  F-->>O: Affected units and severity
+  O->>R: Revise remaining plan only
+  R->>S: Re-optimize under new constraints
+  S-->>R: Revised schedule candidate
+  R->>V: Re-evaluate revised plan
+  V-->>R: Feasibility and risk
+  R-->>O: Plan v2 plus change summary
+  O->>M: Persist revision history
+  O-->>I: Deliver updated plan
+  I-->>U: Show what changed and why

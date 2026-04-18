@@ -1,0 +1,21 @@
+{
+  "plan_id": "plan_ds_30d_001",
+  "version": "v2",
+  "feasibility_score": 0.81,
+  "quality_score": 0.86,
+  "subscores": {
+    "time_fit": 0.79,
+    "dependency_validity": 0.93,
+    "workload_balance": 0.80,
+    "resource_coverage": 0.89
+  },
+  "status": "ACCEPT_WITH_WARNING",
+  "warnings": [
+    "Reduced hours in week 3 increase risk for milestone M3.",
+    "Recommend one extra optional practice session in day 27 buffer."
+  ],
+  "recommendations": [
+    "Use 20-minute micro-revision blocks on days 14 and 15.",
+    "If day 16 is missed, auto-shift U10 to day 18 and merge labs."
+  ]
+}

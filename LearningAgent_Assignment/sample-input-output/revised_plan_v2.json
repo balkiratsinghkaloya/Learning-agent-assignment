@@ -1,0 +1,37 @@
+{
+  "plan_id": "plan_ds_30d_001",
+  "version": "v2",
+  "based_on": "feedback_event_week2.json",
+  "revision_strategy": "partial_reoptimize",
+  "change_summary": {
+    "reason": "User behind schedule and temporary reduction in available hours",
+    "affected_days": [12, 13, 14, 15, 16, 17, 18, 19],
+    "actions": [
+      "Split U08 and U09 into smaller units",
+      "Shift one advanced elective task to buffer day",
+      "Move M3 assessment from day 17 to day 19",
+      "Preserve completed section and unaffected future capstone blocks"
+    ]
+  },
+  "feasibility_score": 0.81,
+  "quality_score": 0.86,
+  "day_wise_schedule_changes": [
+    {"day": 12, "old": {"units": ["U09"], "hours": 2.5}, "new": {"units": ["U08-PartA"], "hours": 1.5}},
+    {"day": 13, "old": {"units": ["U10"], "hours": 2.0}, "new": {"units": ["U08-PartB"], "hours": 1.5}},
+    {"day": 14, "old": {"units": ["U11"], "hours": 2.0}, "new": {"units": ["U09-PartA"], "hours": 1.5}},
+    {"day": 15, "old": {"units": ["ML Mini Practice"], "hours": 2.5}, "new": {"units": ["U09-PartB"], "hours": 1.5}},
+    {"day": 16, "old": {"units": ["ML Evaluation Practice"], "hours": 2.0}, "new": {"units": ["U10"], "hours": 1.5}},
+    {"day": 17, "old": {"units": ["M3 Assessment"], "hours": 2.0}, "new": {"units": ["U11"], "hours": 2.0}},
+    {"day": 18, "old": {"units": ["U12"], "hours": 2.0}, "new": {"units": ["ML Mini Practice"], "hours": 2.0}},
+    {"day": 19, "old": {"units": ["U13"], "hours": 2.0}, "new": {"units": ["M3 Assessment"], "hours": 2.0}}
+  ],
+  "preserved_schedule_blocks": [
+    "Days 1-11 unchanged",
+    "Days 24-30 unchanged"
+  ],
+  "updated_assumptions": [
+    "Temporary reduced study time applies only for days 12-16.",
+    "User can recover pace starting day 17.",
+    "Milestone shift by 2 days remains acceptable to final target."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "user_id": "user_ds_001",
+  "goal": "Learn Data Science in 30 days",
+  "deadline_days": 30,
+  "availability": {
+    "hours_per_day": 2.5,
+    "days_per_week": 6,
+    "unavailable_dates": [
+      "2026-04-27",
+      "2026-05-11"
+    ]
+  },
+  "preferences": {
+    "content_mode": ["video", "hands_on"],
+    "pace": "moderate",
+    "preferred_time_slots": ["19:00-21:30"],
+    "difficulty_tolerance": 0.65
+  },
+  "prior_knowledge": {
+    "python": "basic",
+    "statistics": "beginner",
+    "machine_learning": "none"
+  }
+}

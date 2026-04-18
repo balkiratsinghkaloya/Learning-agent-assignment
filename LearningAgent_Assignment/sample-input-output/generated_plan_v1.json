@@ -1,0 +1,90 @@
+{
+  "plan_id": "plan_ds_30d_001",
+  "version": "v1",
+  "goal": "Learn Data Science in 30 days",
+  "feasibility_score": 0.84,
+  "quality_score": 0.88,
+  "estimated_total_hours": 42,
+  "milestones": [
+    {
+      "milestone_id": "M1",
+      "name": "Python and Data Handling",
+      "target_day": 5,
+      "units": ["U01", "U02", "U03", "U04"]
+    },
+    {
+      "milestone_id": "M2",
+      "name": "Statistics Fundamentals",
+      "target_day": 10,
+      "units": ["U05", "U06", "U07"]
+    },
+    {
+      "milestone_id": "M3",
+      "name": "Machine Learning Core",
+      "target_day": 17,
+      "units": ["U08", "U09", "U10", "U11"]
+    },
+    {
+      "milestone_id": "M4",
+      "name": "Model Evaluation and Feature Work",
+      "target_day": 23,
+      "units": ["U12", "U13", "U14"]
+    },
+    {
+      "milestone_id": "M5",
+      "name": "Capstone and Revision",
+      "target_day": 30,
+      "units": ["U15", "U16", "U17"]
+    }
+  ],
+  "day_wise_schedule": [
+    {"day": 1, "units": ["U01"], "hours": 2.0},
+    {"day": 2, "units": ["U02"], "hours": 2.5},
+    {"day": 3, "units": ["U03"], "hours": 2.5},
+    {"day": 4, "units": ["U04"], "hours": 2.0},
+    {"day": 5, "units": ["M1 Quiz", "Revision"], "hours": 2.0},
+    {"day": 6, "units": ["U05"], "hours": 2.5},
+    {"day": 7, "units": ["U06"], "hours": 2.0},
+    {"day": 8, "units": ["U07"], "hours": 2.0},
+    {"day": 9, "units": ["Practice Lab"], "hours": 2.5},
+    {"day": 10, "units": ["M2 Quiz", "Revision"], "hours": 2.0},
+    {"day": 11, "units": ["U08"], "hours": 2.5},
+    {"day": 12, "units": ["U09"], "hours": 2.5},
+    {"day": 13, "units": ["U10"], "hours": 2.0},
+    {"day": 14, "units": ["U11"], "hours": 2.0},
+    {"day": 15, "units": ["ML Mini Practice"], "hours": 2.5},
+    {"day": 16, "units": ["ML Evaluation Practice"], "hours": 2.0},
+    {"day": 17, "units": ["M3 Assessment"], "hours": 2.0},
+    {"day": 18, "units": ["U12"], "hours": 2.0},
+    {"day": 19, "units": ["U13"], "hours": 2.0},
+    {"day": 20, "units": ["U14"], "hours": 2.5},
+    {"day": 21, "units": ["Feature Engineering Lab"], "hours": 2.0},
+    {"day": 22, "units": ["Model Selection Drill"], "hours": 2.0},
+    {"day": 23, "units": ["M4 Assessment"], "hours": 2.0},
+    {"day": 24, "units": ["U15 Capstone Setup"], "hours": 2.5},
+    {"day": 25, "units": ["U16 Capstone Build"], "hours": 2.5},
+    {"day": 26, "units": ["U16 Continue"], "hours": 2.0},
+    {"day": 27, "units": ["Buffer Day"], "hours": 0.0},
+    {"day": 28, "units": ["U17 Final Report"], "hours": 2.0},
+    {"day": 29, "units": ["Mock Interview", "Revision"], "hours": 2.0},
+    {"day": 30, "units": ["Final Test", "Portfolio Cleanup"], "hours": 2.5}
+  ],
+  "sample_resources": {
+    "U01": [
+      {"title": "Python for Data Analysis Basics", "source": "Coursera"},
+      {"title": "NumPy Quickstart", "source": "Official Docs"}
+    ],
+    "U05": [
+      {"title": "Statistics 101 for Data Science", "source": "edX"},
+      {"title": "StatQuest Playlist", "source": "YouTube Curated"}
+    ],
+    "U09": [
+      {"title": "Introduction to Supervised Learning", "source": "Kaggle Learn"}
+    ]
+  },
+  "assumptions": [
+    "User can sustain 2 to 2.5 focused hours per learning day.",
+    "Two buffer days are enough for uncertainty handling.",
+    "User will complete quizzes on milestone days."
+  ]
+}

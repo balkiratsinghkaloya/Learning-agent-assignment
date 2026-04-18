@@ -1,0 +1,33 @@
+flowchart TD
+  A[Incoming Request] --> B{Request Type}
+  B -->|New Goal| C[Run Planning Pipeline]
+  B -->|Feedback Event| D[Run Revision Pipeline]
+  B -->|Evaluation Only| E[Run Feasibility Checks]
+
+  C --> C1[Decompose Goal]
+  C1 --> C2[Retrieve Topics and Materials]
+  C2 --> C3[Estimate Effort]
+  C3 --> C4[Solve Schedule with Constraints]
+  C4 --> C5[Score Feasibility and Quality]
+  C5 --> C6{Score Above Threshold}
+  C6 -->|Yes| C7[Publish Plan]
+  C6 -->|No| C8[Auto-Replan with Relaxed Soft Constraints]
+  C8 --> C5
+
+  D --> D1[Classify Feedback]
+  D1 --> D2[Impact Analysis]
+  D2 --> D3{Local or Global Impact}
+  D3 -->|Local| D4[Revise Affected Units Only]
+  D3 -->|Global| D5[Partial Re-Optimization of Remaining Plan]
+  D4 --> D6[Evaluate Revised Plan]
+  D5 --> D6
+  D6 --> D7[Publish Revision with Diff]
+
+  E --> E1[Dependency Validation]
+  E1 --> E2[Workload Balance Check]
+  E2 --> E3[Coverage Check]
+  E3 --> E4[Risk and Feasibility Report]
+
+  C7 --> Z[Persist Versioned Context]
+  D7 --> Z
+  E4 --> Z

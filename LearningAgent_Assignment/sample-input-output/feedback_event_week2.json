@@ -1,0 +1,19 @@
+{
+  "plan_id": "plan_ds_30d_001",
+  "user_id": "user_ds_001",
+  "feedback_event": {
+    "event_type": "behind_schedule",
+    "message": "Statistics and supervised learning modules took longer than expected. I can only study 1.5 hours for the next 5 days.",
+    "affected_unit_ids": ["U07", "U08", "U09"],
+    "extra_constraints": {
+      "hours_per_day_override": 1.5,
+      "override_days": [12, 13, 14, 15, 16]
+    }
+  },
+  "progress_snapshot": {
+    "completed_days": 11,
+    "completed_units": ["U01", "U02", "U03", "U04", "U05", "U06"],
+    "actual_hours_spent": 25.0,
+    "planned_hours_spent": 22.0
+  }
+}

@@ -1,0 +1,46 @@
+flowchart TB
+  UI[Interaction Layer\nChat UI or Dashboard]
+  ORCH[Agent Orchestrator\nWorkflow State and Tool Router]
+
+  SUBGRAPH1[Planning Subsystem]
+    GOAL[Goal Understanding and\nDecomposition Engine]
+    RET[Knowledge Retrieval Engine\nCurated Sources plus Vector Search]
+    EFF[Effort Estimation Engine]
+    SCH[Scheduling and Constraint Solver]
+  end
+
+  SUBGRAPH2[Quality and Adaptation]
+    EVAL[Feasibility and Quality Evaluator]
+    FEED[Feedback Analyzer]
+    REV[Revision Engine]
+  end
+
+  STORE[(Context and Memory Store\nPostgreSQL plus Redis)]
+  GRAPH[(Topic Graph\nNeo4j)]
+  VDB[(Vector Store\nPinecone or Weaviate)]
+  OBS[Monitoring and Analytics\nOpenTelemetry Prometheus Grafana]
+
+  UI --> ORCH
+  ORCH --> GOAL
+  ORCH --> RET
+  ORCH --> EFF
+  ORCH --> SCH
+  SCH --> EVAL
+  EVAL --> ORCH
+
+  GOAL --> GRAPH
+  RET --> VDB
+  ORCH --> STORE
+  FEED --> STORE
+  REV --> STORE
+  EFF --> STORE
+
+  UI --> FEED
+  FEED --> REV
+  REV --> SCH
+  REV --> EVAL
+  ORCH --> UI
+
+  ORCH --> OBS
+  EVAL --> OBS
+  FEED --> OBS

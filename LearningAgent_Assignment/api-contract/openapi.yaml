@@ -1,0 +1,257 @@
+openapi: 3.0.3
+info:
+  title: Adaptive Learning Planner Agent API
+  version: 1.0.0
+  description: API contract for planning, evaluation, feedback handling, and plan revision.
+servers:
+  - url: https://api.learning-agent.example.com
+paths:
+  /plan/create:
+    post:
+      summary: Create an initial learning plan
+      operationId: createPlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlanRequest'
+      responses:
+        '200':
+          description: Initial plan generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanResponse'
+  /plan/evaluate:
+    post:
+      summary: Evaluate feasibility and quality of a plan
+      operationId: evaluatePlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [plan_id]
+              properties:
+                plan_id:
+                  type: string
+      responses:
+        '200':
+          description: Plan feasibility report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluationReport'
+  /plan/feedback:
+    post:
+      summary: Submit user feedback and receive impact analysis
+      operationId: submitFeedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackRequest'
+      responses:
+        '200':
+          description: Impact analysis and revision recommendation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedbackResponse'
+  /plan/revise:
+    post:
+      summary: Generate revised plan version after feedback
+      operationId: revisePlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevisePlanRequest'
+      responses:
+        '200':
+          description: Revised plan output
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanResponse'
+  /user/history:
+    get:
+      summary: Get user plan history and context
+      operationId: getUserHistory
+      parameters:
+        - in: query
+          name: user_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User planning history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: string
+                  plans:
+                    type: array
+                    items:
+                      type: object
+                  preferences:
+                    type: object
+components:
+  schemas:
+    CreatePlanRequest:
+      type: object
+      required:
+        - user_id
+        - goal
+        - deadline_days
+        - availability
+      properties:
+        user_id:
+          type: string
+        goal:
+          type: string
+          example: Learn Data Science in 30 days
+        deadline_days:
+          type: integer
+          minimum: 1
+          example: 30
+        availability:
+          type: object
+          required: [hours_per_day, days_per_week]
+          properties:
+            hours_per_day:
+              type: number
+              format: float
+              example: 2.5
+            days_per_week:
+              type: integer
+              minimum: 1
+              maximum: 7
+              example: 6
+            unavailable_dates:
+              type: array
+              items:
+                type: string
+                format: date
+        preferences:
+          type: object
+          properties:
+            content_mode:
+              type: array
+              items:
+                type: string
+            pace:
+              type: string
+              enum: [slow, moderate, fast]
+            preferred_time_slots:
+              type: array
+              items:
+                type: string
+    FeedbackRequest:
+      type: object
+      required: [plan_id, user_id, feedback_event]
+      properties:
+        plan_id:
+          type: string
+        user_id:
+          type: string
+        feedback_event:
+          type: object
+          required: [event_type, message]
+          properties:
+            event_type:
+              type: string
+              enum: [too_hard, too_easy, behind_schedule, unavailable_days, new_goal]
+            message:
+              type: string
+            affected_unit_ids:
+              type: array
+              items:
+                type: string
+            extra_constraints:
+              type: object
+    FeedbackResponse:
+      type: object
+      properties:
+        plan_id:
+          type: string
+        impact_level:
+          type: string
+          enum: [low, medium, high]
+        impacted_units:
+          type: array
+          items:
+            type: string
+        suggested_action:
+          type: string
+        requires_revise:
+          type: boolean
+    RevisePlanRequest:
+      type: object
+      required: [plan_id, user_id, apply_changes]
+      properties:
+        plan_id:
+          type: string
+        user_id:
+          type: string
+        apply_changes:
+          type: object
+        strategy:
+          type: string
+          enum: [local_patch, partial_reoptimize]
+    PlanResponse:
+      type: object
+      properties:
+        plan_id:
+          type: string
+        version:
+          type: string
+        feasibility_score:
+          type: number
+          format: float
+        quality_score:
+          type: number
+          format: float
+        milestones:
+          type: array
+          items:
+            type: object
+        day_wise_schedule:
+          type: array
+          items:
+            type: object
+        assumptions:
+          type: array
+          items:
+            type: string
+    EvaluationReport:
+      type: object
+      properties:
+        plan_id:
+          type: string
+        feasibility_score:
+          type: number
+          format: float
+        quality_score:
+          type: number
+          format: float
+        time_fit:
+          type: number
+        dependency_validity:
+          type: number
+        workload_balance:
+          type: number
+        resource_coverage:
+          type: number
+        warnings:
+          type: array
+          items:
+            type: string

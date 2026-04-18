@@ -1,0 +1,79 @@
+components:
+  GoalDecomposer:
+    input:
+      - goal
+      - user_profile
+    output:
+      - units
+      - prerequisites
+      - milestones
+  KnowledgeRetriever:
+    input:
+      - units
+      - preferences
+      - curated_sources
+    output:
+      - ranked_resources_by_unit
+      - topic_structure
+  EffortEstimator:
+    input:
+      - units
+      - prior_knowledge
+      - historical_estimates
+    output:
+      - effort_hours_by_unit
+      - confidence_by_unit
+  ConstraintScheduler:
+    input:
+      - units
+      - prerequisites
+      - effort_hours
+      - hard_constraints
+      - soft_constraints
+    output:
+      - day_wise_schedule
+      - alternatives
+  FeasibilityEvaluator:
+    input:
+      - day_wise_schedule
+      - prerequisites
+      - constraints
+    output:
+      - feasibility_score
+      - quality_score
+      - warnings
+  FeedbackAnalyzer:
+    input:
+      - feedback_event
+      - progress_snapshot
+      - current_plan
+    output:
+      - impact_level
+      - impacted_units
+      - recommendation
+  RevisionEngine:
+    input:
+      - current_plan
+      - impacted_units
+      - updated_constraints
+    output:
+      - revised_plan
+      - diff_summary
+  ContextStore:
+    input:
+      - user_id
+      - plan_version
+      - interaction_log
+    output:
+      - current_context
+      - full_history
+non_functional_requirements:
+  reliability:
+    - retries_on_retrieval_failure
+    - fallback_schedule_generation
+  observability:
+    - trace_all_agent_steps
+    - store_plan_decision_explanations
+  security:
+    - encrypt_user_history_at_rest
+    - role_based_access_control
